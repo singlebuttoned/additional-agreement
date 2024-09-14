@@ -1,3 +1,3 @@
-from modules import gpt_module
+from modules import contract
 
-__all__ = ["gpt_module"]
+__all__ = ["contract"]
