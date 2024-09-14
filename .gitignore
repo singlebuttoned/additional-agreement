@@ -958,3 +958,4 @@ FodyWeavers.xsd
 */.env
 *.log
 .aider*
+.idea
