@@ -3,6 +3,7 @@ import logging
 import sys
 
 from aiogram import Dispatcher
+from aiogram.types import MenuButtonWebApp, WebAppInfo
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from aiohttp import web
 
@@ -22,6 +23,9 @@ class DispatcherBot(Dispatcher):
 
     async def polling_startup(self) -> None:
         await update_commands(BOT)
+        await BOT.set_chat_menu_button(
+            menu_button=MenuButtonWebApp(text="Open Menu", web_app=WebAppInfo(url=f"https://dify.server33.pleasenever.click/chat/C0byKikFGfa63e6t"))
+        )
         await BOT.delete_webhook()
         await self.start_polling(BOT)
 
@@ -42,6 +46,9 @@ class DispatcherBot(Dispatcher):
     @staticmethod
     async def webhook_startup() -> None:
         await update_commands(BOT)
+        await BOT.set_chat_menu_button(
+            menu_button=MenuButtonWebApp(text="Open Menu", web_app=WebAppInfo(url=BOT.DIFY_PUBLIC_CHAT_URL))
+        )
         await BOT.set_webhook(f"{BOT.WEBHOOK_URL}/{BOT.WEBHOOK_PATH}")
 
     def register_modules(self):

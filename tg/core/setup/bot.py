@@ -23,6 +23,9 @@ class BotGetEnv(Bot):
         self.SERVER_PORT = self.get_int_from_env("SERVER_PORT")
         self.WEBHOOK_URL = self.get_str_from_env("WEBHOOK_URL")
         self.WEBHOOK_PATH = self.get_str_from_env("WEBHOOK_PATH")
+        self.PATH_DATA = self.get_str_from_env("PATH_DATA")
+        self.DIFY_PUBLIC_CHAT_URL = self.get_str_from_env("DIFY_PUBLIC_CHAT_URL")
+
         super().__init__(self.TOKEN_API_TELEGRAM, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     def get_str_from_env(self, name: str) -> str:
