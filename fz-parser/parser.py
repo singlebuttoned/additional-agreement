@@ -62,9 +62,17 @@ def write_to_csv(parsed_data, filename='output.csv'):
 
 
 # Run the parser and export to CSV
-parsed_data = extract_paragraphs(soup)
-write_to_csv(parsed_data)
+# parsed_data = extract_paragraphs(soup)
+# write_to_csv(parsed_data)
 
-print(f"Data has been written to output.csv")
-print("csv content:")
-print(open('output.csv').read())
+# print(f"Data has been written to output.csv")
+# print("csv content:")
+# print(open('output.csv').read())
+
+parsed_data_from_csv = []
+with open('output.csv', mode='r', encoding='utf-8') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        parsed_data_from_csv.append(row)
+
+print("longest paragraph length:", max([len(row['Content']) for row in parsed_data_from_csv]))

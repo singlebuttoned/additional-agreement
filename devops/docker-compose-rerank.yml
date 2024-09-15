@@ -1,0 +1,11 @@
+services:
+  text-embeddings-inference:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5
+    ports:
+      - "8001:80"
+    volumes:
+      - "./data:/data"
+    command: --model-id jinaai/jina-reranker-v2-base-multilingual
+    pull_policy: always
+    restart: unless-stopped
+    # note: needed to manually edit config.json
